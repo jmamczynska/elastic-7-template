@@ -49,8 +49,7 @@ public class ProductSuggestionService {
       Suggest suggest = searchResponse.getSuggest();
       TermSuggestion termSuggestion = suggest.getSuggestion("suggest_product");
       return termSuggestion.getEntries().stream()
-          .map(entry -> entry.getOptions())
-          .flatMap(option -> option.stream())
+          .flatMap(entry -> entry.getOptions().stream())
           .map(option -> option.getText().string())
           .collect(toList());
     } catch (IOException e) {
