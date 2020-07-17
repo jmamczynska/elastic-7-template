@@ -23,7 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Component
 public class ProductSuggestionService {
 
-  private static final Logger logger = getLogger(ProductService.class);
+  private static final Logger logger = getLogger(ProductSuggestionService.class);
 
   private final RestHighLevelClient client;
 

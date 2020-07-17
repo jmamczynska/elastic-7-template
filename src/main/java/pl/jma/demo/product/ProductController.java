@@ -14,11 +14,14 @@ public class ProductController {
 
   private final ProductService productService;
   private final ProductSuggestionService productSuggestionService;
+  private final ProductReactiveService productReactiveService;
 
   public ProductController(ProductService productService,
-      ProductSuggestionService productSuggestionService) {
+      ProductSuggestionService productSuggestionService,
+      ProductReactiveService productReactiveService) {
     this.productService = productService;
     this.productSuggestionService = productSuggestionService;
+    this.productReactiveService = productReactiveService;
   }
 
   @PostMapping
@@ -29,5 +32,10 @@ public class ProductController {
   @GetMapping("/suggest")
   public List<String> getProductSuggestion() {
     return productSuggestionService.suggestProducts();
+  }
+
+  @PostMapping("/mono")
+  public void addProductWithMono(@RequestBody ProductDto productDto) {
+    productReactiveService.saveWithMono(productDto);
   }
 }
