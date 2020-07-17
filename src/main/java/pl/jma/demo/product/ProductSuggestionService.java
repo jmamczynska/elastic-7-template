@@ -31,11 +31,11 @@ public class ProductSuggestionService {
     this.client = client;
   }
 
-  public List<String> suggestProducts() {
+  public List<String> suggestProducts(final String phrase) {
 
     SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
     SuggestionBuilder termSuggestionBuilder =
-        SuggestBuilders.termSuggestion("productName").text("Hamer");
+        SuggestBuilders.termSuggestion("productName").text(phrase);
     SuggestBuilder suggestBuilder = new SuggestBuilder();
     suggestBuilder.addSuggestion("suggest_product", termSuggestionBuilder);
     searchSourceBuilder.suggest(suggestBuilder);
